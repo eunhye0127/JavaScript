@@ -1,0 +1,21 @@
+export class Animal {
+    constructor(type, legs) {
+      this.type = type;
+      this.legs = legs;
+    }
+    makeNoise(sound = "Loud Noise") {
+      console.log(sound);
+    }
+    get metaData() {
+      return `Type: ${this.type}, Legs: ${this.legs}`;
+    }
+    static return10() {
+      return 10;
+    }
+  }
+  
+  export class Cat extends Animal {
+    makeNoise(sound = "meow") {
+      console.log(sound);
+    }
+  } //challenge index.js 에서 두 클래스 불러와서 사용해보기
