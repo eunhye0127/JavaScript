@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+ <body>
+
+     <!-- HTML -->
+     <!-- 1. canvas 엘리먼트를 선언한다: id, widht, height를 태그 내에서 지정해준다. -->
+    <canvas id="myCanvas" width="400" height="300"></canvas>
+    
+
+    <!-- Javascript -->
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext("2d");
+        
+        
+        let y = 0;
+        let x= 0;
+
+        function animate(){
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "pink";
+            ctx.fillText("집가고싶당", x, y);
+            y++;
+            if(y>300)
+            {
+                x = Math.random() * 400;
+                y =0;
+            }
+            
+        }
+        
+        // 5. 애니메이션 함수를 50ms 간격으로 반복 호출
+        setInterval(animate, 1);
+
+
+
+    </script>
+    
+</body>
+</html>
