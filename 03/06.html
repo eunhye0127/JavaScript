@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>animation</title>
+        <style>
+            #canvas{
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id='canvas' width=300 height=300 ></canvas>
+        <script >
+
+            const ctx =  document.getElementById('canvas').getContext('2d');// canvas 2d 가지고 오기
+            
+            const circle = {
+              x: 200,
+              y: 200,
+              size: 30,
+              dx: 5,
+              dy: 4,
+            };
+            
+            const drawCircle = () => {
+                ctx.beginPath();
+                ctx.arc(circle.x, circle.y, 30, 0, Math.PI*2);
+                ctx.fillStyle = "pink";
+                ctx.fill();
+                ctx.closePath();
+
+            };
+            
+            const update = () => {
+              ctx.clearRect(0,0, canvas.width, canvas.height);
+              
+              drawCircle();
+            
+              // Change position
+              circle.x += circle.dx;
+              circle.y += circle.dy;
+            
+              const minX = circle.size;
+              const maxX = canvas.width - circle.size;
+              const minY = circle.size;
+              const maxY = canvas.height - circle.size;
+              
+              // Detect side walls
+              if (  circle.x <= minX || circle.x >= maxX      ) {
+                circle.dx *= -1;
+              }
+            
+              // Detect top and bottom walls
+              if (circle.y <= minY || circle.y >= maxY    ) {
+                circle.dy *= -1;
+              }
+            
+              // Repaint canvas
+              requestAnimationFrame(update); // (*)
+            };
+            
+            update();
+        </script>
+    </body>
+</html>
